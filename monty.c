@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 	char *line, *command_part, *corrected_line;
 	size_t size = 0;
 	ssize_t get = 0;
-	int trim = 0, integral_value, value, i;
+	int trim = 0, integral_value, value, i, tracker;
 	unsigned int line_number = 0;
 	char **ptr2;
 	FILE *monty_file;
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 		{
 			free(line);
 			fclose(monty_file);
-			/**free_stack(top);**/
+			free_stack(top);
 			exit(EXIT_FAILURE);
 		}
 		if (line[0] == ' ')
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 			while (line[trim] == ' ')
 				trim++;
 		}
-		if (line[0] == '\n')
+		if (line[0] == '\n' || line == NULL)
 		{
 			continue;
 		}
@@ -60,6 +60,7 @@ int main(int argc, char *argv[])
 		ptr2 = strtow(corrected_line);
 		command_part = ptr2[0];
 		free(corrected_line);
+		tracker = -1;
 		for (i = 0; cmd[i].opcode != NULL; i++)
 		{
 			value = _strcmp1(command_part,cmd[i].opcode);
@@ -71,7 +72,12 @@ int main(int argc, char *argv[])
 					integral_value = atoi(ptr2[1]);
 				container.value_passed = integral_value;
 				cmd[i].f(&top, line_number);
+				tracker++;
 			}
+		}
+		if (tracker == -1)
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, command_part);
 		}
 		free_strtow(ptr2);
 	} while (get > 0);
@@ -79,11 +85,11 @@ int main(int argc, char *argv[])
 	if (cmd[i].opcode == NULL)
 	{
 		fclose(monty_file);
-		free_stack(top);
 		top = NULL;
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, corrected_line);
 	}
 	top = NULL;
 	fclose(monty_file);
+	free_stack(top);
 	return (1);
 }
