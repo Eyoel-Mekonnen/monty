@@ -78,6 +78,7 @@ int main(int argc, char *argv[])
 				}
 				if (ptr2[1] != NULL && isinteger(ptr2[1]))
 					integral_value = atoi(ptr2[1]);
+				printf("%d number\n", integral_value);
 				container.value_passed = integral_value;
 				cmd[i].f(&top, line_number);
 				tracker++;
