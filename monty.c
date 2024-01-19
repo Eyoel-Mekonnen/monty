@@ -87,5 +87,5 @@ int main(int argc, char *argv[])
 	}
 	top = NULL;
 	fclose(monty_file);
-	return (0);
+	return (1);
 }
