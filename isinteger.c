@@ -8,6 +8,7 @@
 bool isinteger(char *str)
 {
 	int i = 0;
+
 	if (str[i] == '-')
 	{
 		i++;

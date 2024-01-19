@@ -2,7 +2,7 @@
 /**
  * pall - prints all elements of stack
  * @top: address of the first node
- * line_number: number of lines counted
+ * @line_number: number of lines counted
  *
  */
 void pall(stack_t **top, unsigned int line_number)

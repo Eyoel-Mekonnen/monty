@@ -8,6 +8,7 @@
 #include <stddef.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include <fcntl.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -40,6 +41,7 @@ typedef struct instruction_s
  * struct container_s - contains the argument and value
  * @argument: the argument that is read from the file
  * @value_passed: the integer value
+ * @count: line number
  *
  * Descritption: argument and its value
  * for stack, queues, LIFO, FIFO

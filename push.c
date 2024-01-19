@@ -2,13 +2,13 @@
 /**
  * push - pushes to stack to the first node
  * @top: address of the first node
- * line_number: number of lines read
+ * @line_number: number of lines read
  *
  */
 void push(stack_t **top, unsigned int line_number)
 {
 	stack_t *newNode;
-	
+
 	newNode = malloc(sizeof(stack_t));
 	if (newNode == NULL)
 		return;

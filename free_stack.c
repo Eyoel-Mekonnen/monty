@@ -11,7 +11,7 @@ void free_stack(stack_t *top)
 		printf("Stack is Empty\n");
 		return;
 	}
-	while (top->next != NULL) 
+	while (top->next != NULL)
 	{
 		top = top->next;
 		free(top->prev);
