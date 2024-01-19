@@ -50,9 +50,8 @@ int main(int argc, char *argv[])
 			while (line[trim] == ' ')
 				trim++;
 		}
-		if (line == NULL || line[0] == '\n')
+		if (line[0] == '\n')
 		{
-			free_stack(top);
 			continue;
 		}
 		trim = 0;
