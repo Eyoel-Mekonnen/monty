@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * push - pushes to stack to the first node
  * @top: address of the first node

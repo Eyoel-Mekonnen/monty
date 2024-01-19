@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 void free_strtow(char **argv)
 {
     int i;

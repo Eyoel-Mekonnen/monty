@@ -1,6 +1,6 @@
 #define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
-#include "main.h"
+#include "monty.h"
 container_t container = {NULL, 0, 0};
 /**
  * main - check the code

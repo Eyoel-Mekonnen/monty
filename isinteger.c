@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * isinteger - checks wether string is integer
  * @str: the string passed

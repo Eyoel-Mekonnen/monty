@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * free_stack - free allocated stack memory
  * @top: address of the pointer pointing to stack

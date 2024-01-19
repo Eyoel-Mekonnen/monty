@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * pall - prints all elements of stack
  * @top: address of the first node

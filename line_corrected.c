@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 /**
  * line_corrected - takes string retrieved by getline
  * @line: string retrieved from getline
