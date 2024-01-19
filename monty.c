@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	size_t size = 0;
 	ssize_t get = 0;
 	int trim = 0, integral_value, value, i, tracker;
-	unsigned int line_number = 0;
+	unsigned int line_number = 1;
 	char **ptr2;
 	FILE *monty_file;
 	stack_t *top = NULL;
@@ -67,7 +67,15 @@ int main(int argc, char *argv[])
 			if (value == 0)
 			{
 				container.argument = command_part;
-				/**printf("%s\n", ptr2[1]);**/
+				if (!(isinteger(ptr2[1])) || ptr2[1] == NULL)
+				{
+					fprintf(stderr, "L%u: usage: push integer\n", line_number);
+					fclose(monty_file);
+					free(line);
+					free_strtow(ptr2);
+					free_stack(top);
+					exit(EXIT_FAILURE);
+				}
 				if (ptr2[1] != NULL && isinteger(ptr2[1]))
 					integral_value = atoi(ptr2[1]);
 				container.value_passed = integral_value;
@@ -78,6 +86,11 @@ int main(int argc, char *argv[])
 		if (tracker == -1)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, command_part);
+			fclose(monty_file);
+			free(line);
+			free_strtow(ptr2);
+			free_stack(top);
+			exit(EXIT_FAILURE);
 		}
 		free_strtow(ptr2);
 	} while (get > 0);
