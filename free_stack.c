@@ -4,16 +4,18 @@
  * @top: address of the pointer pointing to stack
  *
  */
-void free_stack(stack_t **top)
+void free_stack(stack_t *top)
 {
-	stack_t *node;
-
-	node = *top;
-	while (*top)
+	if (top == NULL)
 	{
-		node = node->next;
-		free(*top);
-		*top = node;
+		printf("Stack is Empty\n");
+		return;
 	}
-	*top = NULL;
+	while (top->next != NULL) 
+	{
+		top = top->next;
+		free(top->prev);
+	}
+	free(top);
+	top = NULL;
 }

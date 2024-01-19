@@ -27,5 +27,4 @@ void push(stack_t **top, unsigned int line_number)
 		newNode->prev = NULL;
 		*top = newNode;
 	}
-	
 }

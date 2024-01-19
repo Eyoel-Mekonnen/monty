@@ -53,9 +53,10 @@ typedef struct container_s
 extern container_t container;
 char **strtow(char *str);
 void free_strtow(char **argv);
-void free_stack(stack_t **top);
+void free_stack(stack_t *top);
 char *line_corrected(char *line);
 void push(stack_t **top, unsigned int line_number);
 int _strcmp1(char *s1, char *s2);
 bool isinteger(char *str);
+void pall(stack_t **top, unsigned int line_number);
 #endif
