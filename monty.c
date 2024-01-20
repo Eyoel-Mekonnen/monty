@@ -1,7 +1,7 @@
 #define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include "monty.h"
-container_t container = {NULL, 0, 0};
+container_t container = {NULL, NULL, 0, 0, NULL, NULL};
 /**
  * main - check the code
  * @argc: the number of arguments that is passed
@@ -11,13 +11,12 @@ container_t container = {NULL, 0, 0};
  */
 int main(int argc, char *argv[])
 {
-	instruction_t cmd [] = {{"push", push}, {"pall", pall}, {NULL, NULL}};
-	char *line, *command_part, *corrected_line;
+	instruction_t cmd [] = {{"push", push}, {"pall", pall}, {"pint", pint}, {NULL, NULL}};
+	char *line, *command_part, *value_part;
 	size_t size = 0;
 	ssize_t get = 0;
-	int trim = 0, integral_value, value, i, tracker;
+	int i, tracker, value;
 	unsigned int line_number = 1;
-	char **ptr2;
 	FILE *monty_file;
 	stack_t *top = NULL;
 	
@@ -36,73 +35,57 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	do {
+	do
+	{
 		get = getline(&line, &size, monty_file);
+		/**
 		if (get == -1)
 		{
-			free(line);
 			fclose(monty_file);
+			free(line);
 			free_stack(top);
 			exit(EXIT_FAILURE);
 		}
-		if (line[0] == ' ')
-		{
-			while (line[trim] == ' ')
-				trim++;
-		}
-		if (line[0] == '\n' || line == NULL)
-		{
-			continue;
-		}
-		trim = 0;
+		**/
 		line_number++;
-		corrected_line = line_corrected(line);
-		ptr2 = strtow(corrected_line);
-		command_part = ptr2[0];
-		free(corrected_line);
+		command_part = strtok(line, " \n\t");
+		value_part = strtok(NULL, " \n\t");
+		container.integral = value_part;
+		container.file = monty_file;
+		container.line = line;
 		tracker = -1;
-		for (i = 0; cmd[i].opcode != NULL; i++)
+		for (i = 0; cmd[i].opcode != NULL && get != -1; i++)
 		{
 			value = _strcmp1(command_part,cmd[i].opcode);
 			if (value == 0)
 			{
 				container.argument = command_part;
-				if (!(isinteger(ptr2[1])) || ptr2[1] == NULL)
-				{
-					fprintf(stderr, "L%u: usage: push integer\n", line_number);
-					fclose(monty_file);
-					free(line);
-					free_strtow(ptr2);
-					free_stack(top);
-					exit(EXIT_FAILURE);
-				}
-				if (ptr2[1] != NULL && isinteger(ptr2[1]))
-					integral_value = atoi(ptr2[1]);
-				container.value_passed = integral_value;
 				cmd[i].f(&top, line_number);
 				tracker++;
-			}
+			}	
 		}
 		if (tracker == -1)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, command_part);
 			fclose(monty_file);
 			free(line);
-			free_strtow(ptr2);
 			free_stack(top);
 			exit(EXIT_FAILURE);
 		}
-		free_strtow(ptr2);
 	} while (get > 0);
-	free(line);
-	if (cmd[i].opcode == NULL)
+	printf("Tracker is %d\n", tracker);
+	/**
+	if (tracker == -1)
 	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, command_part);
 		fclose(monty_file);
-		top = NULL;
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, corrected_line);
+		free(line);
+		free_stack(top);
+		exit(EXIT_FAILURE);
 	}
-	top = NULL;
+	**/
 	fclose(monty_file);
+	free(line);
 	free_stack(top);
-	return (1);
+	return (0);
 }

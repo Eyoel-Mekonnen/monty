@@ -10,13 +10,13 @@ bool isinteger(char *str)
 	int i = 0;
 	if (str == NULL)
 		return (false);
-	if (str[i] == '-')
+	if (str[0] == '-')
 	{
 		i++;
 		if (str[i] == '\0')
 			return (false);
 	}
-	while (str[i])
+	while (str[i] != '\0')
 	{
 		if (!isdigit(str[i]))
 			return (false);

@@ -49,8 +49,11 @@ typedef struct instruction_s
 typedef struct container_s
 {
 	char *argument;
+	char *integral;
 	int value_passed;
 	unsigned int count;
+	FILE *file;
+	char *line;
 } container_t;
 extern container_t container;
 char **strtow(char *str);
@@ -61,4 +64,6 @@ void push(stack_t **top, unsigned int line_number);
 int _strcmp1(char *s1, char *s2);
 bool isinteger(char *str);
 void pall(stack_t **top, unsigned int line_number);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+void pint(stack_t **top, unsigned int line_number);
 #endif

@@ -16,7 +16,7 @@ int counter(char *str)
 		len++;
 	if (len == 1)
 		return (count);
-	while (i < len)
+	while (i < len - 1)
 	{
 		if (str[i] == ' ')
 			i++;
