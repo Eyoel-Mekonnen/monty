@@ -38,25 +38,20 @@ int main(int argc, char *argv[])
 	do
 	{
 		get = getline(&line, &size, monty_file);
-		/**
 		if (get == -1)
-		{
-			fclose(monty_file);
-			free(line);
-			free_stack(top);
-			exit(EXIT_FAILURE);
-		}
-		**/
+			break;
 		line_number++;
 		command_part = strtok(line, " \n\t");
+		if (command_part == NULL)
+			continue;
 		value_part = strtok(NULL, " \n\t");
 		container.integral = value_part;
 		container.file = monty_file;
 		container.line = line;
 		tracker = -1;
-		for (i = 0; cmd[i].opcode != NULL && get != -1; i++)
+		for (i = 0; cmd[i].opcode != NULL; i++)
 		{
-			value = _strcmp1(command_part,cmd[i].opcode);
+			value = strcmp(command_part,cmd[i].opcode);
 			if (value == 0)
 			{
 				container.argument = command_part;
@@ -72,8 +67,7 @@ int main(int argc, char *argv[])
 			free_stack(top);
 			exit(EXIT_FAILURE);
 		}
-	} while (get > 0);
-	printf("Tracker is %d\n", tracker);
+	} while (true);
 	/**
 	if (tracker == -1)
 	{
