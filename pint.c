@@ -17,6 +17,5 @@ void pint(stack_t **top, unsigned int line_number)
 		free(container.line);
 		exit(EXIT_FAILURE);
 	}
-	else
-		printf("%d\n",(*top)->n);
+	printf("%d\n",(*top)->n);
 }

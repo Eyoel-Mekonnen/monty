@@ -11,7 +11,6 @@ void pall(stack_t **top, unsigned int line_number)
 
 	if (*top == NULL)
 	{
-		printf("Stack is Empty\n");
 		return;
 	}
 	newNode = *top;

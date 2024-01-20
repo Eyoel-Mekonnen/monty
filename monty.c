@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 			free_stack(top);
 			exit(EXIT_FAILURE);
 		}
-	} while (true);
+	} while (get);
 	/**
 	if (tracker == -1)
 	{

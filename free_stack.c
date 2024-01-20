@@ -6,16 +6,13 @@
  */
 void free_stack(stack_t *top)
 {
-	if (top == NULL)
+	stack_t *node;
+
+	node = top;
+	while (top)
 	{
-		printf("Stack is Empty\n");
-		return;
+		node = top->next;
+		free(top);
+		top = node;
 	}
-	while (top->next != NULL)
-	{
-		top = top->next;
-		free(top->prev);
-	}
-	free(top);
-	top = NULL;
 }
