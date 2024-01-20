@@ -1,1 +1,1 @@
-pinte
+pint

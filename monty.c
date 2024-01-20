@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	size_t size = 0;
 	ssize_t get = 0;
 	int i, tracker, value;
-	unsigned int line_number = 1;
+	unsigned int line_number = 0;
 	FILE *monty_file;
 	stack_t *top = NULL;
 	
