@@ -24,5 +24,8 @@ void pchar(stack_t **top, unsigned int line_number)
 	else
 	{
 		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
+		fclose(container.file);
+		free(container.line);
+		exit(EXIT_FAILURE);
 	}
 }
