@@ -17,7 +17,7 @@ void pstr(stack_t **top, unsigned int line_number)
 		{
 			printf("%c", newNode->n);
 		}
-		else if (newNode->n == 0)
+		else
 		{
 			break;
 		}
