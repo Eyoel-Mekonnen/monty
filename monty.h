@@ -66,4 +66,5 @@ bool isinteger(char *str);
 void pall(stack_t **top, unsigned int line_number);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 void pint(stack_t **top, unsigned int line_number);
+void pop(stack_t **top, unsigned int line_number);
 #endif

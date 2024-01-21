@@ -11,7 +11,7 @@ container_t container = {NULL, NULL, 0, 0, NULL, NULL};
  */
 int main(int argc, char *argv[])
 {
-	instruction_t cmd [] = {{"push", push}, {"pall", pall}, {"pint", pint}, {NULL, NULL}};
+	instruction_t cmd [] = {{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop}, {NULL, NULL}};
 	char *line, *command_part, *value_part;
 	size_t size = 0;
 	ssize_t get = 0;
