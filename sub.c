@@ -18,7 +18,7 @@ void sub(stack_t **top, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	newNode = *top;
-	value = (*top)->n - (*top)->next->n;
+	value = (*top)->next->n - (*top)->n;
 	newNode = (*top)->next;
 	free(*top);
 	*top = newNode;
