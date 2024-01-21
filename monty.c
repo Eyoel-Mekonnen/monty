@@ -40,6 +40,11 @@ int main(int argc, char *argv[])
 		get = getline(&line, &size, monty_file);
 		if (get == -1)
 			break;
+		if (line[0] == '#')
+		{
+			line_number++;
+			continue;
+		}
 		line_number++;
 		command_part = strtok(line, " \n\t");
 		if (command_part == NULL)
