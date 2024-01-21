@@ -9,11 +9,8 @@ void pstr(stack_t **top, unsigned int line_number)
 {
 	stack_t *newNode;
 
-	if (*top == NULL)
-	{
-		printf("\n");
-	}
 	newNode = *top;
+	container.count = line_number;
 	while (newNode != NULL)
 	{
 		if (newNode->n > 0 && newNode->n < 128)
@@ -23,14 +20,6 @@ void pstr(stack_t **top, unsigned int line_number)
 		else if (newNode->n == 0)
 		{
 			break;
-		}
-		else
-		{
-			fprintf(stderr, "L%d: can't pstr, value out of range\n", line_number);
-			fclose(container.file);
-			free(container.line);
-			free_stack(*top);
-			exit(EXIT_FAILURE);
 		}
 		newNode = newNode->next;
 	}
