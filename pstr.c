@@ -12,9 +12,6 @@ void pstr(stack_t **top, unsigned int line_number)
 	if (*top == NULL)
 	{
 		printf("\n");
-		fclose(container.file);
-		free(container.line);
-		exit(EXIT_FAILURE);
 	}
 	newNode = *top;
 	while (newNode != NULL)
