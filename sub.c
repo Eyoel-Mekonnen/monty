@@ -15,7 +15,6 @@ void sub(stack_t **top, unsigned int line_number)
 		fprintf(stderr, "L%d: can't sub, stackt too short\n", line_number);
 		fclose(container.file);
 		free(container.line);
-		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}
 	newNode = *top;
