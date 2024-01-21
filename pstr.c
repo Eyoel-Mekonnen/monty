@@ -11,7 +11,7 @@ void pstr(stack_t **top, unsigned int line_number)
 
 	if (*top == NULL)
 	{
-		fprintf(stderr, "L%d: can't pstr, stack empty\n", line_number);
+		printf("\n");
 		fclose(container.file);
 		free(container.line);
 		exit(EXIT_FAILURE);
