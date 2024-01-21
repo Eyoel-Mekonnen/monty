@@ -15,20 +15,19 @@ void pop(stack_t **top, unsigned int line_number)
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		fclose(container.file);
 		free(container.line);
-		newNode = NULL;
 		exit(EXIT_FAILURE);
 	}
 	newNode = *top;
-	if ((*top)->next != NULL)
-		newNode = (*top)->next;
+	if (newNode->next == NULL)
+	{
+		free(newNode);
+		*top = NULL;
+	}
 	else
 	{
-		fclose(container.file);
-		free(container.line);
+		newNode = (*top)->next;
 		free(*top);
-		exit(EXIT_SUCCESS);
+		newNode->prev = NULL;
+		*top = newNode;
 	}
-	free(*top);
-	newNode->prev = NULL;
-	*top = newNode;
 }
